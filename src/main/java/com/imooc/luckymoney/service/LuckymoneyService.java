@@ -1,6 +1,7 @@
 package com.imooc.luckymoney.service;
 
 import com.imooc.luckymoney.domain.Luckymoney;
+import com.imooc.luckymoney.enums.ResultEnum;
 import com.imooc.luckymoney.expection.LuckymoneyExpection;
 import com.imooc.luckymoney.repository.LuckymoneyRepository;
 import java.math.BigDecimal;
@@ -42,9 +43,9 @@ public class LuckymoneyService {
         Luckymoney luckymoney = optional.get();
         BigDecimal money = luckymoney.getMoney();
         if(money.intValue() < 20) {
-            throw new LuckymoneyExpection(101,"你发的红包小于10元");
+            throw new LuckymoneyExpection(ResultEnum.MONEY_TOO_LITTLE);
         } else if(money.intValue() > 20 && money.intValue() < 100) {
-            throw new LuckymoneyExpection(102,"你发的红包小于100元");
+            throw new LuckymoneyExpection(ResultEnum.MONEY_LITTLE);
         }
     }
 }

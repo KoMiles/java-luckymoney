@@ -1,6 +1,7 @@
 package com.imooc.luckymoney.controller;
 
 import com.imooc.luckymoney.domain.Luckymoney;
+import com.imooc.luckymoney.enums.ResultEnum;
 import com.imooc.luckymoney.repository.LuckymoneyRepository;
 import com.imooc.luckymoney.service.LuckymoneyService;
 import com.imooc.luckymoney.utils.ResultUtils;
@@ -36,6 +37,8 @@ public class LuckymoneyController {
     @GetMapping("/luckymoneys")
     public List<Luckymoney> list()
     {
+
+        System.out.println(ResultEnum.SUCCESS.getCode()+";"+ResultEnum.SUCCESS.getMessage());
         logger.info("list start");
         return luckymoneyRepository.findAll();
     }
@@ -49,7 +52,8 @@ public class LuckymoneyController {
     public Object create(@Valid Luckymoney luckymoney, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors()) {
-            return ResultUtils.error(1,bindingResult.getFieldError().getDefaultMessage());
+            return null;
+//            return ResultUtils.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
 
         luckymoney.setProducer(luckymoney.getProducer());
@@ -58,7 +62,7 @@ public class LuckymoneyController {
         return ResultUtils.success();
     }
 
-    /**src/interface/admin/htdocs/api/tag.php
+    /**
      * 查询红包
      * @param id
      * @return

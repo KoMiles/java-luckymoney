@@ -1,15 +1,16 @@
 package com.imooc.luckymoney.expection;
 
+import com.imooc.luckymoney.enums.ResultEnum;
+
 public class LuckymoneyExpection extends RuntimeException{
 
     private Integer code;
 
     private String message;
 
-
-    public LuckymoneyExpection(Integer code, String message) {
-        this.code = code;
-        this.message = message;
+    public LuckymoneyExpection(ResultEnum resultEnum) {
+        this.code = resultEnum.getCode();
+        this.message = resultEnum.getMessage();
     }
 
     public Integer getCode() {

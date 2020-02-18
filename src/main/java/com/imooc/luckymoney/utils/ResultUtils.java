@@ -1,6 +1,7 @@
 package com.imooc.luckymoney.utils;
 
 import com.imooc.luckymoney.domain.Result;
+import com.imooc.luckymoney.enums.ResultEnum;
 
 public class ResultUtils {
 
@@ -13,8 +14,8 @@ public class ResultUtils {
     public static Result success(Object object)
     {
         Result result = new Result();
-        result.setCode(0);
-        result.setMessage("成功");
+        result.setCode(ResultEnum.SUCCESS.getCode());
+        result.setMessage(ResultEnum.SUCCESS.getMessage());
         result.setData(object);
         return result;
     }

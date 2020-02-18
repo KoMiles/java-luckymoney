@@ -1,9 +1,10 @@
-package com.imooc.luckymoney;
+package com.imooc.luckymoney.domain;
 
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Luckymoney {
@@ -11,6 +12,7 @@ public class Luckymoney {
     @GeneratedValue
     private Integer id;
 
+    @Min(value = 10, message = "红包不能小于10元")
     private BigDecimal money;
 
     /**
@@ -53,5 +55,15 @@ public class Luckymoney {
 
     public void setConsumer(String consumer) {
         this.consumer = consumer;
+    }
+
+    @Override
+    public String toString() {
+        return "Luckymoney{" +
+                "id=" + id +
+                ", money=" + money +
+                ", producer='" + producer + '\'' +
+                ", consumer='" + consumer + '\'' +
+                '}';
     }
 }

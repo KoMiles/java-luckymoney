@@ -1,9 +1,15 @@
-package com.imooc.luckymoney;
+package com.imooc.luckymoney.controller;
 
-import java.math.BigDecimal;
+import com.imooc.luckymoney.domain.Luckymoney;
+import com.imooc.luckymoney.repository.LuckymoneyRepository;
+import com.imooc.luckymoney.service.LuckymoneyService;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LuckymoneyController {
+
+    private final static Logger logger = LoggerFactory.getLogger(LuckymoneyController.class);
 
     @Autowired
     private LuckymoneyRepository luckymoneyRepository;
@@ -27,6 +35,7 @@ public class LuckymoneyController {
     @GetMapping("/luckymoneys")
     public List<Luckymoney> list()
     {
+        logger.info("list start");
         return luckymoneyRepository.findAll();
     }
 
@@ -36,12 +45,15 @@ public class LuckymoneyController {
      * @return
      */
     @PostMapping("/luckymoneys")
-    public Luckymoney create(@RequestParam("producer") String producer,
-                            @RequestParam("money")BigDecimal money)
+    public Luckymoney create(@Valid Luckymoney luckymoney, BindingResult bindingResult)
     {
-        Luckymoney luckymoney = new Luckymoney();
-        luckymoney.setProducer(producer);
-        luckymoney.setMoney(money);
+        if(bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+
+        luckymoney.setProducer(luckymoney.getProducer());
+        luckymoney.setMoney(luckymoney.getMoney());
         return luckymoneyRepository.save(luckymoney);
     }
 

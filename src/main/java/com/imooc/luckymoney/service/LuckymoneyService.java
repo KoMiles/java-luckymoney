@@ -1,5 +1,7 @@
-package com.imooc.luckymoney;
+package com.imooc.luckymoney.service;
 
+import com.imooc.luckymoney.domain.Luckymoney;
+import com.imooc.luckymoney.repository.LuckymoneyRepository;
 import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

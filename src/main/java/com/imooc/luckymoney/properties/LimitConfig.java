@@ -1,4 +1,4 @@
-package com.imooc.luckymoney;
+package com.imooc.luckymoney.properties;
 
 import java.math.BigDecimal;
 import org.springframework.boot.context.properties.ConfigurationProperties;

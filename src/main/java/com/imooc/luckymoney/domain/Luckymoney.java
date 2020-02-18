@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Luckymoney {
@@ -13,6 +14,7 @@ public class Luckymoney {
     private Integer id;
 
     @Min(value = 10, message = "红包不能小于10元")
+    @NotNull(message = "金额必传")
     private BigDecimal money;
 
     /**

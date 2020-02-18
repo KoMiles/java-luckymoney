@@ -3,6 +3,7 @@ package com.imooc.luckymoney.controller;
 import com.imooc.luckymoney.domain.Luckymoney;
 import com.imooc.luckymoney.repository.LuckymoneyRepository;
 import com.imooc.luckymoney.service.LuckymoneyService;
+import com.imooc.luckymoney.utils.ResultUtils;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -45,19 +46,19 @@ public class LuckymoneyController {
      * @return
      */
     @PostMapping("/luckymoneys")
-    public Luckymoney create(@Valid Luckymoney luckymoney, BindingResult bindingResult)
+    public Object create(@Valid Luckymoney luckymoney, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtils.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
 
         luckymoney.setProducer(luckymoney.getProducer());
         luckymoney.setMoney(luckymoney.getMoney());
-        return luckymoneyRepository.save(luckymoney);
+        luckymoneyRepository.save(luckymoney);
+        return ResultUtils.success();
     }
 
-    /**
+    /**src/interface/admin/htdocs/api/tag.php
      * 查询红包
      * @param id
      * @return
@@ -93,6 +94,13 @@ public class LuckymoneyController {
     public void createTwo()
     {
         luckymoneyService.createTwo();
+    }
+
+
+    @GetMapping("luckymoneys/getmoney/{id}")
+    public void getMoney(@PathVariable("id") Integer id) throws Exception
+    {
+        luckymoneyService.getMoney(id);
     }
 
 }

@@ -37,9 +37,6 @@ public class LuckymoneyController {
     @GetMapping("/luckymoneys")
     public List<Luckymoney> list()
     {
-
-        System.out.println(ResultEnum.SUCCESS.getCode()+";"+ResultEnum.SUCCESS.getMessage());
-        logger.info("list start");
         return luckymoneyRepository.findAll();
     }
 
@@ -52,8 +49,7 @@ public class LuckymoneyController {
     public Object create(@Valid Luckymoney luckymoney, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors()) {
-            return null;
-//            return ResultUtils.error(1,bindingResult.getFieldError().getDefaultMessage());
+            return ResultUtils.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
 
         luckymoney.setProducer(luckymoney.getProducer());

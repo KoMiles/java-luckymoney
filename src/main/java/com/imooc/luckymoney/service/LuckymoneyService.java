@@ -48,4 +48,9 @@ public class LuckymoneyService {
             throw new LuckymoneyExpection(ResultEnum.MONEY_LITTLE);
         }
     }
+
+    public Luckymoney getOne(Integer id)
+    {
+        return luckymoneyRepository.findById(id).get();
+    }
 }

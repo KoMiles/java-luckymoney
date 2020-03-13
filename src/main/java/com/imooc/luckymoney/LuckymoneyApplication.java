@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LuckymoneyApplication {
 
     public static void main(String[] args) {
+        System.out.println("================= appliaction start =================");
         SpringApplication.run(LuckymoneyApplication.class, args);
+        System.out.println("================= appliaction end =================");
     }
 
 }

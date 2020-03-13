@@ -8,6 +8,11 @@ limit:
   maxMoney: 9999
   description: 最少要发${limit.minMoney}元，最大不能超过${limit.maxMoney}
 
+
+weixin:
+  appId: 1234568
+  appName: kongming
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
